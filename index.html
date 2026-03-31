@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProdHunt India — Product & Growth Jobs for Freshers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── CSS Variables ─────────────────────────────────────────────────── */
+    :root {
+      --bg:        #080d14;
+      --bg2:       #0e1520;
+      --bg3:       #151e2d;
+      --border:    #1e2d42;
+      --text:      #e2eaf5;
+      --muted:     #7a8fa8;
+      --accent:    #00e5ff;
+      --accent2:   #0088cc;
+      --accent-glow: rgba(0, 229, 255, 0.15);
+      --green:     #00e676;
+      --yellow:    #ffd600;
+      --red:       #ff5252;
+      --card-bg:   #0e1a27;
+      --card-hover:#101e2e;
+      --radius:    12px;
+      --transition: 0.2s ease;
+    }
+
+    .light {
+      --bg:        #f0f4f8;
+      --bg2:       #ffffff;
+      --bg3:       #e8eef5;
+      --border:    #d0dae6;
+      --text:      #0d1b2a;
+      --muted:     #5a6d82;
+      --accent:    #0077cc;
+      --accent2:   #005fa3;
+      --accent-glow: rgba(0, 119, 204, 0.1);
+      --card-bg:   #ffffff;
+      --card-hover:#f5f9ff;
+    }
+
+    /* ── Reset ─────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background var(--transition), color var(--transition);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ── Background mesh ───────────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(0,229,255,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 80% 80%, rgba(0,136,204,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Layout ────────────────────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+    /* ── Header ────────────────────────────────────────────────────────── */
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 13, 20, 0.8);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .light header { background: rgba(240, 244, 248, 0.85); }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.3px;
+    }
+    .logo-text span { color: var(--accent); }
+
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+
+    .theme-btn {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      transition: all var(--transition);
+    }
+    .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Hero ──────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 64px 0 40px;
+      text-align: center;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-bottom: 20px;
+      letter-spacing: 0.3px;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    /* ── Stats bar ─────────────────────────────────────────────────────── */
+    .stats-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 99px;
+      font-size: 0.88rem;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .stat-label { color: var(--muted); }
+    .last-updated { color: var(--muted); font-size: 0.8rem; }
+
+    /* ── Search ────────────────────────────────────────────────────────── */
+    .search-wrap {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      animation: fadeUp 0.6s 0.15s ease both;
+    }
+    .search-wrap .icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+    #searchInput {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 14px 16px 14px 44px;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    #searchInput:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    #searchInput::placeholder { color: var(--muted); }
+
+    /* ── Tabs ──────────────────────────────────────────────────────────── */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 4px;
+      border-radius: var(--radius);
+      margin-bottom: 32px;
+      width: fit-content;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all var(--transition);
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+    }
+    .tab-btn:hover:not(.active) { color: var(--text); background: var(--bg3); }
+
+    /* ── Filters ───────────────────────────────────────────────────────── */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s 0.25s ease both;
+    }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 4px;
+    }
+    .filter-chip {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: inherit;
+    }
+    .filter-chip:hover, .filter-chip.active {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .clear-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      padding: 6px 10px;
+      border-radius: 99px;
+      transition: color var(--transition);
+      font-family: inherit;
+    }
+    .clear-btn:hover { color: var(--red); }
+
+    /* ── Results count ─────────────────────────────────────────────────── */
+    .results-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .results-count strong { color: var(--text); }
+
+    /* ── Job Grid ──────────────────────────────────────────────────────── */
+    #jobGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    /* ── Job Card ──────────────────────────────────────────────────────── */
+    .job-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition), background var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .job-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .job-card:hover {
+      border-color: var(--accent);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,229,255,0.07);
+    }
+    .job-card:hover::before { opacity: 1; }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .company-avatar {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+    .card-header { flex: 1; }
+    .job-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.98rem;
+      line-height: 1.3;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+    .job-company { color: var(--muted); font-size: 0.85rem; font-weight: 400; }
+
+    .bookmark-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      transition: all var(--transition);
+      flex-shrink: 0;
+    }
+    .bookmark-btn:hover, .bookmark-btn.saved {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      background: rgba(255, 214, 0, 0.08);
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .meta-icon { font-size: 0.75rem; }
+
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid;
+    }
+    .tag-source-linkedin    { color: #0a66c2; border-color: rgba(10,102,194,0.3); background: rgba(10,102,194,0.08); }
+    .tag-source-naukri      { color: #f15b2a; border-color: rgba(241,91,42,0.3);  background: rgba(241,91,42,0.08);  }
+    .tag-source-internshala { color: #00bcd4; border-color: rgba(0,188,212,0.3);  background: rgba(0,188,212,0.08);  }
+    .tag-source-wellfound   { color: #e91e63; border-color: rgba(233,30,99,0.3);  background: rgba(233,30,99,0.08);  }
+    .tag-source-hiring      { color: #9c27b0; border-color: rgba(156,39,176,0.3); background: rgba(156,39,176,0.08); }
+    .tag-mode-remote { color: var(--green); border-color: rgba(0,230,118,0.3); background: rgba(0,230,118,0.08); }
+    .tag-mode-hybrid { color: var(--yellow); border-color: rgba(255,214,0,0.3); background: rgba(255,214,0,0.08); }
+    .tag-mode-onsite { color: var(--muted); border-color: var(--border); background: transparent; }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: auto;
+    }
+    .posted-time {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .salary-tag {
+      font-size: 0.78rem;
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .apply-btn {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      font-family: inherit;
+      transition: all var(--transition);
+      display: flex; align-items: center; gap: 5px;
+      white-space: nowrap;
+    }
+    .apply-btn:hover {
+      background: #33ecff;
+      transform: translateY(-1px);
+    }
+
+    /* ── Empty state ───────────────────────────────────────────────────── */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+    .empty-state .icon { font-size: 3rem; margin-bottom: 16px; }
+    .empty-state h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    /* ── Email signup ──────────────────────────────────────────────────── */
+    .email-section {
+      margin: 60px 0 20px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .email-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% -20%, var(--accent-glow), transparent);
+      pointer-events: none;
+    }
+    .email-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .email-section p { color: var(--muted); margin-bottom: 24px; font-size: 0.95rem; }
+    .email-form {
+      display: flex;
+      gap: 10px;
+      max-width: 440px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .email-input {
+      flex: 1;
+      min-width: 220px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .email-input:focus { border-color: var(--accent); }
+    .email-input::placeholder { color: var(--muted); }
+    .email-btn {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: inherit;
+      transition: all var(--transition);
+    }
+    .email-btn:hover { background: #33ecff; }
+    .email-success {
+      color: var(--green);
+      font-size: 0.9rem;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* ── Footer ────────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 40px;
+    }
+    footer a { color: var(--accent); }
+
+    /* ── Loading ────────────────────────────────────────────────────────── */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 60px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+    .spinner {
+      width: 24px; height: 24px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* ── Animations ────────────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .card-anim {
+      animation: fadeUp 0.4s ease both;
+    }
+
+    /* ── Responsive ────────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero { padding: 40px 0 24px; }
+      #jobGrid { grid-template-columns: 1fr; }
+      .stats-bar { gap: 10px; }
+      .email-section { padding: 28px 20px; }
+      .filters { gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────────────────────────────── -->
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">🚀</div>
+        <div class="logo-text">Prod<span>Hunt</span> India</div>
+      </div>
+      <div class="header-actions">
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☀️ Light</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Main ───────────────────────────────────────────────────────────────── -->
+<main>
+  <div class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Updated daily at 7 AM IST — India only
+      </div>
+      <h1>Product & Growth Jobs<br/>for <em>Freshers</em> in India</h1>
+      <p>PM, APM, Product Intern & Growth Intern roles — 0 to 2 years experience — posted in the last 24 hours.</p>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-bar" id="statsBar">
+      <div class="stat">
+        <span class="stat-num" id="totalCount">—</span>
+        <span class="stat-label">jobs in last 24 hrs</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="remoteCount">—</span>
+        <span class="stat-label">remote</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="freshCount">—</span>
+        <span class="stat-label">fresher-friendly</span>
+      </div>
+      <div class="stat" id="lastUpdatedStat">
+        <span class="last-updated" id="lastUpdatedText">Fetching...</span>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <span class="icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search by title, company, or keyword…" oninput="applyFilters()" />
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('all', this)">All Jobs</button>
+      <button class="tab-btn" onclick="switchTab('saved', this)">⭐ Saved</button>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters" id="filtersRow">
+      <div class="filter-group">
+        <span class="filter-label">Role</span>
+        <button class="filter-chip active" data-filter="role" data-value="all" onclick="setFilter('role','all',this)">All</button>
+        <button class="filter-chip" data-filter="role" data-value="product manager" onclick="setFilter('role','product manager',this)">PM</button>
+        <button class="filter-chip" data-filter="role" data-value="associate product manager" onclick="setFilter('role','associate product manager',this)">APM</button>
+        <button class="filter-chip" data-filter="role" data-value="product intern" onclick="setFilter('role','product intern',this)">Product Intern</button>
+        <button class="filter-chip" data-filter="role" data-value="growth" onclick="setFilter('role','growth',this)">Growth</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Mode</span>
+        <button class="filter-chip active" data-filter="mode" data-value="all" onclick="setFilter('mode','all',this)">All</button>
+        <button class="filter-chip" data-filter="mode" data-value="remote" onclick="setFilter('mode','remote',this)">Remote</button>
+        <button class="filter-chip" data-filter="mode" data-value="hybrid" onclick="setFilter('mode','hybrid',this)">Hybrid</button>
+        <button class="filter-chip" data-filter="mode" data-value="on-site" onclick="setFilter('mode','on-site',this)">On-site</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Source</span>
+        <button class="filter-chip active" data-filter="source" data-value="all" onclick="setFilter('source','all',this)">All</button>
+        <button class="filter-chip" data-filter="source" data-value="linkedin" onclick="setFilter('source','linkedin',this)">LinkedIn</button>
+        <button class="filter-chip" data-filter="source" data-value="naukri" onclick="setFilter('source','naukri',this)">Naukri</button>
+        <button class="filter-chip" data-filter="source" data-value="internshala" onclick="setFilter('source','internshala',this)">Internshala</button>
+        <button class="filter-chip" data-filter="source" data-value="wellfound" onclick="setFilter('source','wellfound',this)">Wellfound</button>
+        <button class="filter-chip" data-filter="source" data-value="hiring.cafe" onclick="setFilter('source','hiring.cafe',this)">hiring.cafe</button>
+      </div>
+      <button class="clear-btn" onclick="clearFilters()">✕ Clear</button>
+    </div>
+
+    <!-- Results meta -->
+    <div class="results-meta">
+      <div id="resultsCount"><strong>0</strong> jobs shown</div>
+    </div>
+
+    <!-- Job Grid -->
+    <div id="jobGrid">
+      <div class="loading"><div class="spinner"></div> Fetching latest jobs…</div>
+    </div>
+
+    <!-- Email signup -->
+    <div class="email-section">
+      <h2>📬 Get Daily Job Alerts</h2>
+      <p>Fresh listings every morning — directly to your inbox.</p>
+      <div class="email-form">
+        <input type="email" class="email-input" id="emailInput" placeholder="you@email.com" />
+        <button class="email-btn" onclick="subscribeEmail()">Subscribe Free</button>
+      </div>
+      <div class="email-success" id="emailSuccess">✅ You're subscribed! Expect your first digest tomorrow at 7 AM IST.</div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    Built for Indian freshers 🇮🇳 &nbsp;·&nbsp;
+    Data scraped from LinkedIn, Naukri, Internshala, Wellfound & hiring.cafe &nbsp;·&nbsp;
+    <a href="https://github.com" target="_blank">View on GitHub</a>
+  </div>
+</footer>
+
+<!-- ── Script ──────────────────────────────────────────────────────────────── -->
+<script>
+  // ── State ──────────────────────────────────────────────────────────────────
+  let allJobs = [];
+  let savedIds = new Set(JSON.parse(localStorage.getItem('savedJobs') || '[]'));
+  let activeTab = 'all';
+  let filters = { role: 'all', mode: 'all', source: 'all' };
+  let searchQuery = '';
+
+  // ── Load Data ──────────────────────────────────────────────────────────────
+  async function loadJobs() {
+    try {
+      const res = await fetch('data/jobs.json?t=' + Date.now());
+      if (!res.ok) throw new Error('No data yet');
+      const data = await res.json();
+      allJobs = data.jobs || [];
+
+      // Stats
+      document.getElementById('totalCount').textContent = allJobs.length;
+      document.getElementById('remoteCount').textContent = allJobs.filter(j => j.work_mode === 'Remote').length;
+      document.getElementById('freshCount').textContent = allJobs.length; // all are fresher-filtered
+      document.getElementById('lastUpdatedText').textContent = '🕐 ' + (data.last_updated_ist || 'Today');
+
+      applyFilters();
+    } catch (e) {
+      // Show demo data if no real data yet
+      allJobs = getDemoJobs();
+      document.getElementById('totalCount').textContent = allJobs.length + ' (demo)';
+      document.getElementById('remoteCount').textContent = allJobs.filter(j => j.work_mode === 'Remote').length;
+      document.getElementById('freshCount').textContent = allJobs.length;
+      document.getElementById('lastUpdatedText').textContent = '⚡ Demo mode — run scraper to get real jobs';
+      applyFilters();
+    }
+  }
+
+  // ── Demo jobs for first-time display ──────────────────────────────────────
+  function getDemoJobs() {
+    return [
+      { id:'d1', title:'Product Intern', company:'Razorpay', location:'Bangalore', work_mode:'Hybrid', experience:'Fresher', salary:'₹25,000/mo', source:'LinkedIn', apply_link:'#', posted_ago:'3 hours ago', posted_at: new Date().toISOString() },
+      { id:'d2', title:'Associate Product Manager', company:'Swiggy', location:'Bangalore', work_mode:'On-site', experience:'0-1 YOE', salary:'₹18 LPA', source:'Naukri', apply_link:'#', posted_ago:'5 hours ago', posted_at: new Date().toISOString() },
+      { id:'d3', title:'Growth Intern', company:'CRED', location:'Remote', work_mode:'Remote', experience:'Fresher', salary:'₹20,000/mo', source:'Internshala', apply_link:'#', posted_ago:'7 hours ago', posted_at: new Date().toISOString() },
+      { id:'d4', title:'Product Manager', company:'Zepto', location:'Mumbai', work_mode:'On-site', experience:'1-2 YOE', salary:'₹22 LPA', source:'Wellfound', apply_link:'#', posted_ago:'9 hours ago', posted_at: new Date().toISOString() },
+      { id:'d5', title:'Product Intern', company:'Meesho', location:'Bangalore', work_mode:'Remote', experience:'Fresher', salary:'₹15,000/mo', source:'hiring.cafe', apply_link:'#', posted_ago:'11 hours ago', posted_at: new Date().toISOString() },
+      { id:'d6', title:'Associate Product Manager', company:'PhonePe', location:'Hyderabad', work_mode:'Hybrid', experience:'0-2 YOE', salary:'₹20 LPA', source:'LinkedIn', apply_link:'#', posted_ago:'14 hours ago', posted_at: new Date().toISOString() },
+    ];
+  }
+
+  // ── Filters ────────────────────────────────────────────────────────────────
+  function setFilter(type, value, el) {
+    filters[type] = value;
+    document.querySelectorAll(`[data-filter="${type}"]`).forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    applyFilters();
+  }
+
+  function clearFilters() {
+    filters = { role: 'all', mode: 'all', source: 'all' };
+    document.getElementById('searchInput').value = '';
+    searchQuery = '';
+    document.querySelectorAll('.filter-chip[data-value="all"]').forEach(b => b.classList.add('active'));
+    document.querySelectorAll('.filter-chip:not([data-value="all"])').forEach(b => b.classList.remove('active'));
+    applyFilters();
+  }
+
+  function switchTab(tab, el) {
+    activeTab = tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    applyFilters();
+  }
+
+  function applyFilters() {
+    searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+    let jobs = activeTab === 'saved'
+      ? allJobs.filter(j => savedIds.has(j.id))
+      : allJobs;
+
+    jobs = jobs.filter(j => {
+      const t = j.title.toLowerCase();
+      const c = j.company.toLowerCase();
+      const matchSearch = !searchQuery || t.includes(searchQuery) || c.includes(searchQuery) || j.location.toLowerCase().includes(searchQuery);
+      const matchRole = filters.role === 'all' || t.includes(filters.role);
+      const matchMode = filters.mode === 'all' || j.work_mode.toLowerCase().includes(filters.mode);
+      const matchSource = filters.source === 'all' || j.source.toLowerCase().includes(filters.source);
+      return matchSearch && matchRole && matchMode && matchSource;
+    });
+
+    renderJobs(jobs);
+  }
+
+  // ── Render ─────────────────────────────────────────────────────────────────
+  function renderJobs(jobs) {
+    const grid = document.getElementById('jobGrid');
+    document.getElementById('resultsCount').innerHTML = `<strong>${jobs.length}</strong> jobs shown`;
+
+    if (jobs.length === 0) {
+      grid.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">${activeTab === 'saved' ? '⭐' : '🔍'}</div>
+          <h3>${activeTab === 'saved' ? 'No saved jobs yet' : 'No jobs found'}</h3>
+          <p>${activeTab === 'saved' ? 'Bookmark jobs by clicking the ⭐ on any card.' : 'Try a different search or clear filters. New jobs drop daily at 7 AM IST.'}</p>
+        </div>`;
+      return;
+    }
+
+    grid.innerHTML = jobs.map((job, i) => buildCard(job, i)).join('');
+  }
+
+  function buildCard(job, i) {
+    const isSaved = savedIds.has(job.id);
+    const sourceClass = 'tag-source-' + job.source.toLowerCase().replace(/[^a-z]/g, '').replace('hiringcafe','hiring');
+    const modeClass = 'tag-mode-' + job.work_mode.toLowerCase().replace('-','').replace(' ','');
+    const initials = job.company.split(' ').map(w => w[0]).slice(0,2).join('');
+
+    return `
+      <div class="job-card card-anim" style="animation-delay:${i * 0.04}s">
+        <div class="card-top">
+          <div class="company-avatar">${initials}</div>
+          <div class="card-header">
+            <div class="job-title">${job.title}</div>
+            <div class="job-company">${job.company}</div>
+          </div>
+          <button class="bookmark-btn ${isSaved ? 'saved' : ''}" onclick="toggleSave('${job.id}', this)" title="${isSaved ? 'Remove' : 'Save job'}">
+            ${isSaved ? '⭐' : '☆'}
+          </button>
+        </div>
+
+        <div class="card-meta">
+          <span class="meta-item"><span class="meta-icon">📍</span>${job.location}</span>
+          <span class="meta-item"><span class="meta-icon">🎓</span>${job.experience}</span>
+          ${job.salary ? `<span class="meta-item"><span class="meta-icon">💰</span>${job.salary}</span>` : ''}
+        </div>
+
+        <div class="card-tags">
+          <span class="tag ${sourceClass}">${job.source}</span>
+          <span class="tag ${modeClass}">${job.work_mode}</span>
+        </div>
+
+        <div class="card-footer">
+          <span class="posted-time">🕐 ${job.posted_ago}</span>
+          <a href="${job.apply_link}" target="_blank" rel="noopener">
+            <button class="apply-btn">Apply ↗</button>
+          </a>
+        </div>
+      </div>`;
+  }
+
+  // ── Bookmarks ──────────────────────────────────────────────────────────────
+  function toggleSave(id, btn) {
+    if (savedIds.has(id)) {
+      savedIds.delete(id);
+      btn.textContent = '☆';
+      btn.classList.remove('saved');
+    } else {
+      savedIds.add(id);
+      btn.textContent = '⭐';
+      btn.classList.add('saved');
+    }
+    localStorage.setItem('savedJobs', JSON.stringify([...savedIds]));
+    if (activeTab === 'saved') applyFilters();
+  }
+
+  // ── Theme ──────────────────────────────────────────────────────────────────
+  function toggleTheme() {
+    const isLight = document.body.classList.toggle('light');
+    document.getElementById('themeBtn').textContent = isLight ? '🌙 Dark' : '☀️ Light';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  }
+
+  // ── Email ──────────────────────────────────────────────────────────────────
+  function subscribeEmail() {
+    const email = document.getElementById('emailInput').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('emailInput').style.borderColor = 'var(--red)';
+      setTimeout(() => document.getElementById('emailInput').style.borderColor = '', 1500);
+      return;
+    }
+    // Store locally (replace with EmailJS for real emails)
+    const subs = JSON.parse(localStorage.getItem('subscribers') || '[]');
+    if (!subs.includes(email)) subs.push(email);
+    localStorage.setItem('subscribers', JSON.stringify(subs));
+    document.getElementById('emailSuccess').style.display = 'block';
+    document.getElementById('emailInput').value = '';
+  }
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    document.getElementById('themeBtn').textContent = '🌙 Dark';
+  }
+  loadJobs();
+</script>
+</body>
+</html>
