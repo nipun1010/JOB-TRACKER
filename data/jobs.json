@@ -1,6 +1,20 @@
 {
-  "last_updated": "2026-10-22T06:11:32.588048+00:00",
-  "last_updated_ist": "22 Oct 2026, 11:41 AM IST",
-  "total_jobs": 0,
-  "jobs": []
+  "last_updated": "2026-10-23T06:07:19.287628+00:00",
+  "last_updated_ist": "23 Oct 2026, 11:37 AM IST",
+  "total_jobs": 1,
+  "jobs": [
+    {
+      "id": "fa6007aa8e03",
+      "title": "Product Manager",
+      "company": "CODETRU",
+      "location": "India",
+      "work_mode": "On-site",
+      "experience": "Fresher / 0-1 YOE",
+      "salary": null,
+      "source": "Internshala",
+      "apply_link": "https://internshala.com/jobs/keywords-product+manager/",
+      "posted_at": "2026-10-23T04:07:19.287628+00:00",
+      "posted_ago": "2 hours ago"
+    }
+  ]
 }
